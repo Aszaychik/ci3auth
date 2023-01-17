@@ -9,10 +9,54 @@ class Auth extends CI_Controller {
 	}
 	public function index()
 	{
-		$data['title'] = 'Login Account';
-		$this->load->view('templates/auth_header', $data);
-		$this->load->view('auth/login' );
-		$this->load->view('templates/auth_footer');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		$this->form_validation->set_rules('password', 'Password', 'required|trim', [
+			'min_length' => 'Password too short!'
+		]);
+
+		if($this->form_validation->run() == false){
+			$data['title'] = 'Login Account';
+			$this->load->view('templates/auth_header', $data);
+			$this->load->view('auth/login' );
+			$this->load->view('templates/auth_footer');
+		} else{
+			$this->_login('');
+		}
+	}
+
+	private function _login(){
+		$email = $this->input->post('email');
+		$password = $this->input->post('password');
+
+		$user = $this->db->get_where('users', [
+			'email' => $email
+		])->row_array();
+
+		if($user){
+			if($user['is_active'] == 1){
+				if(password_verify($password, $user['password'])){
+
+				} else {
+					$this->session->set_flashdata('message', '
+					<div class="alert alert-danger" role="alert">
+						Wrong Password!
+					</div>');
+					redirect('auth');
+				}
+			} else {
+				$this->session->set_flashdata('message', '
+				<div class="alert alert-danger" role="alert">
+					Email not
+				</div>');
+				redirect('auth');
+			}
+		}else{
+			$this->session->set_flashdata('message', '
+			<div class="alert alert-danger" role="alert">
+				Email not Registered!
+			</div>');
+			redirect('auth');
+		}
 	}
 
 	public function register()
@@ -37,8 +81,8 @@ class Auth extends CI_Controller {
 		}
 		else{
 			$data = [
-				'name' => $this->input->post('name'),
-				'email' => $this->input->post('email'),
+				'name' => htmlspecialchars($this->input->post('name', true)),
+				'email' => htmlspecialchars($this->input->post('email', true)),
 				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
 				'image' => $this->input->post('image'),
 				'role_id' => 2,

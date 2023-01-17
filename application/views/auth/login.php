@@ -20,15 +20,19 @@
 
 									<?= $this->session->flashdata('message');?>
 
-                                    <form class="user">
+									<?= form_open('auth', 'class="user"');?>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="email" name="email" aria-describedby="emailHelp"
-                                                placeholder="Enter Email Address...">
+                                                placeholder="Enter Email Address..."
+												value="<?= set_value('email');?>">
+
+												<?= form_error('email', '<small class="text-danger pl-3">', '</small>');?>
                                         </div>
                                         <div class="form-group">
                                             <input type="password" class="form-control form-control-user"
                                                 id="password" name="password" placeholder="Password">
+												<?= form_error('password', '<small class="text-danger pl-3">', '</small>');?>
                                         </div>
                                         <!-- <div class="form-group">
                                             <div class="custom-control custom-checkbox small">
@@ -47,7 +51,7 @@
                                         <a href="index.html" class="btn btn-facebook btn-user btn-block">
                                             <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
                                         </a> -->
-                                    </form>
+									<?= form_close();?>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
