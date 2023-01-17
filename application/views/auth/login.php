@@ -41,7 +41,7 @@
                                                     Me</label>
                                             </div>
                                         </div> -->
-                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                        <button type="submit" class="btn btn-dark btn-user btn-block">
                                             Login
                                         </button>
                                         <!-- <hr>
@@ -54,10 +54,10 @@
 									<?= form_close();?>
                                     <hr>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                        <a class="small text-dark" href="forgot-password.html">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="<?= base_url();?>auth/register">Create an Account!</a>
+                                        <a class="small text-dark" href="<?= base_url();?>auth/register">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>

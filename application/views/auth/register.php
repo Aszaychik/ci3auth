@@ -33,7 +33,7 @@
 										<?= form_error('passwordconf', '<small class="text-danger pl-3">', '</small>');?>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary btn-user btn-block">
+                                <button type="submit" class="btn btn-dark btn-user btn-block">
                                     Register Account
                                 </button>
                                 <!-- <hr>
@@ -46,10 +46,10 @@
                             <?= form_close();?>
                             <hr>
                             <div class="text-center">
-                                <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                <a class="small text-dark" href="forgot-password.html">Forgot Password?</a>
                             </div>
                             <div class="text-center">
-                                <a class="small" href="<?= base_url();?>auth">Already have an account? Login!</a>
+                                <a class="small text-dark" href="<?= base_url();?>auth">Already have an account? Login!</a>
                             </div>
                         </div>
                     </div>
